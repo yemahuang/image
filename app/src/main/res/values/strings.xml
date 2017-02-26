@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">image</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    //图片的后缀 则同一个图片key 得到不同的结果
+    <string name="image_suffix_general">_fw320sf</string>//普通浏览的图
+    <string name="image_suffix_big">_fw658</string>//大图
+    <string name="image_suffix_small">_sq75sf</string>//小图
+</resources>
