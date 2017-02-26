@@ -78,7 +78,7 @@ public class TypeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_beauty, container, false);
+        View view = inflater.inflate(R.layout.fragment_type, container, false);
         mUnbinder = ButterKnife.bind(this, view);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycle_view);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
