@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <ImageView
+        android:id="@+id/content_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="horizontal">
+
+        <com.lezhi.image.widget.VerticalTextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:paddingBottom="30dp"
+            android:paddingTop="30dp"
+            app:columnSpacing="20dp"
+            app:leftLine="true"
+            app:leftLineColor="@color/colorAccent"
+            app:leftLinePadding="4dp"
+            app:letterSpacing="6dp"
+            app:regex="[，。？！]"
+            app:textColor="@android:color/white" />
+
+        <com.lezhi.image.widget.VerticalTextView
+            android:id="@+id/desc_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:paddingBottom="30dp"
+            android:paddingTop="30dp"
+            app:columnSpacing="20dp"
+            app:leftLine="true"
+            app:leftLineColor="@color/colorAccent"
+            app:leftLinePadding="4dp"
+            app:letterSpacing="6dp"
+            app:regex="[，。？！]"
+            app:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@mipmap/ic_file_download" />
+
+</FrameLayout>

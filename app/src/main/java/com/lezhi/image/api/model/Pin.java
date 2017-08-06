@@ -1,18 +1,52 @@
 package com.lezhi.image.api.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.lezhi.image.api.Api;
 
 /**
  * Created by lezhi on 2017/2/26.
  */
 
-public class Pin {
+public class Pin implements Parcelable {
 
     String pin_id;
     ImageFile file;
     Board board;
 
-    public static class ImageFile {
+    protected Pin(Parcel in) {
+        pin_id = in.readString();
+        file = in.readParcelable( ImageFile.class.getClassLoader() );
+        board = in.readParcelable( Board.class.getClassLoader() );
+    }
+
+    public static final Creator<Pin> CREATOR = new Creator<Pin>() {
+        @Override
+        public Pin createFromParcel(Parcel in) {
+            return new Pin( in );
+        }
+
+        @Override
+        public Pin[] newArray(int size) {
+            return new Pin[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString( pin_id );
+        dest.writeParcelable( file, flags );
+        dest.writeParcelable( board, flags );
+    }
+
+
+    public static class ImageFile implements Parcelable {
         public static final String FW320_SF = "_fw320sf";
         public static final String FW658 = "_fw658";
         public static final String SQ75_SF = "_sq75sf";
@@ -20,6 +54,25 @@ public class Pin {
         String type;
         String width;
         String height;
+
+        protected ImageFile(Parcel in) {
+            key = in.readString();
+            type = in.readString();
+            width = in.readString();
+            height = in.readString();
+        }
+
+        public static final Creator<ImageFile> CREATOR = new Creator<ImageFile>() {
+            @Override
+            public ImageFile createFromParcel(Parcel in) {
+                return new ImageFile( in );
+            }
+
+            @Override
+            public ImageFile[] newArray(int size) {
+                return new ImageFile[size];
+            }
+        };
 
         public String getImageUrl(String type) {
             return Api.IMAGE_BASE_URL + getKey() + type;
@@ -60,12 +113,43 @@ public class Pin {
         public void setHeight(String height) {
             this.height = height;
         }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString( key );
+            dest.writeString( type );
+            dest.writeString( width );
+            dest.writeString( height );
+        }
     }
 
-    public static class Board {
+    public static class Board implements Parcelable {
         String title;
         String description;
         String category_id;
+
+        protected Board(Parcel in) {
+            title = in.readString();
+            description = in.readString();
+            category_id = in.readString();
+        }
+
+        public static final Creator<Board> CREATOR = new Creator<Board>() {
+            @Override
+            public Board createFromParcel(Parcel in) {
+                return new Board( in );
+            }
+
+            @Override
+            public Board[] newArray(int size) {
+                return new Board[size];
+            }
+        };
 
         public String getTitle() {
             return title;
@@ -89,6 +173,18 @@ public class Pin {
 
         public void setCategory_id(String category_id) {
             this.category_id = category_id;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString( title );
+            dest.writeString( description );
+            dest.writeString( category_id );
         }
     }
 

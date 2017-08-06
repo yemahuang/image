@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.lezhi.image.ImageActivity;
 import com.lezhi.image.R;
 import com.lezhi.image.api.model.Pin;
 import com.squareup.picasso.Picasso;
@@ -25,12 +26,13 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.MyViewHolder> 
 
     private Context mContext;
     private List<Pin> mPinsList;
+
     public TypeAdapter(Context context) {
         mContext = context;
         mPinsList = new ArrayList<Pin>();
     }
 
-    public void addListNotify(List<Pin> result){
+    public void addListNotify(List<Pin> result) {
         mPinsList.addAll(result);
         notifyDataSetChanged();
     }
@@ -43,11 +45,21 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.MyViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         Pin.ImageFile imageFile = mPinsList.get(position).getFile();
         if (imageFile != null) {
-            Picasso.with(mContext).load(imageFile.getImageUrl()).into(holder.imageView);
+            Picasso.with(mContext)
+                    .load(imageFile.getImageUrl())
+                    .placeholder(R.color.colorAccent)
+                    .into(holder.imageView);
         }
+
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImageActivity.startImageActivity(mContext, mPinsList.get(position));
+            }
+        });
 
     }
 
@@ -64,6 +76,7 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.MyViewHolder> 
         public MyViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
         }
     }
 
